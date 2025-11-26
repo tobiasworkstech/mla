@@ -1,0 +1,37 @@
+{
+  "name": "memory-leak-analyzer",
+  "version": "1.0.0",
+  "description": "Memory leak analyzer with AI-powered analysis using Claude",
+  "main": "backend/dist/index.js",
+  "scripts": {
+    "dev": "npm run dev:backend & npm run dev:frontend",
+    "dev:frontend": "cd frontend && npm run dev",
+    "dev:backend": "cd backend && npm run dev",
+    "build": "npm run build:backend && npm run build:frontend",
+    "build:frontend": "cd frontend && npm run build",
+    "build:backend": "cd backend && npm run build",
+    "test": "npm run test:backend && npm run test:frontend",
+    "test:backend": "cd backend && npm run test",
+    "test:frontend": "cd frontend && npm run test"
+  },
+  "workspaces": [
+    "frontend",
+    "backend",
+    "cpp-analyzer"
+  ],
+  "keywords": [
+    "memory-leak",
+    "analysis",
+    "ai",
+    "claude",
+    "c++",
+    "debugging"
+  ],
+  "author": "",
+  "license": "MIT",
+  "devDependencies": {
+    "@types/cors": "^2.8.19",
+    "@types/express-serve-static-core": "^5.1.0",
+    "@types/multer": "^2.0.0"
+  }
+}

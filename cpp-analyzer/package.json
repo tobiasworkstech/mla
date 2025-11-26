@@ -1,0 +1,10 @@
+{
+  "name": "cpp-analyzer",
+  "version": "1.0.0",
+  "description": "C/C++ memory analysis engine",
+  "main": "index.js",
+  "scripts": {
+    "build": "cmake -B build && cmake --build build",
+    "clean": "rm -rf build"
+  }
+}
