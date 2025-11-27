@@ -21,6 +21,14 @@ interface ParsedMemoryData {
   size: number
   functions: string[]
   suspiciousPatterns: string[]
+  codeSnippets: Map<string, CodeSnippet[]>
+  sourceCode: string
+}
+
+interface CodeSnippet {
+  lineNumber: number
+  code: string
+  context: string[]
 }
 
 interface AIAnalysisResult {
@@ -32,6 +40,8 @@ interface AIAnalysisResult {
     severity: string
     description: string
     recommendation: string
+    codeSnippet?: CodeSnippet
+    lineNumber?: number
   }>
   analysis: string
 }
@@ -43,12 +53,18 @@ export async function analyzeWithClaude(data: ParsedMemoryData, fileName: string
     return generateMockAnalysis(data, fileName)
   }
 
+  // Prepare code snippets for analysis
+  const codeSnippetsText = formatCodeSnippets(data.codeSnippets)
+
   const prompt = `You are an expert C/C++ memory analyst. Analyze the following memory dump and provide insights on potential memory leaks and corruption issues.
 
 File: ${fileName}
 Size: ${data.size} bytes
 Functions: ${data.functions.join(', ')}
 Suspicious Patterns: ${data.suspiciousPatterns.join(', ')}
+
+Code Snippets with Potential Issues:
+${codeSnippetsText}
 
 Provide a detailed analysis in JSON format with the following structure:
 {
@@ -60,13 +76,14 @@ Provide a detailed analysis in JSON format with the following structure:
       "location": "<function or memory address>",
       "severity": "<critical|high|medium|low>",
       "description": "<detailed description>",
-      "recommendation": "<fix recommendation>"
+      "recommendation": "<fix recommendation>",
+      "lineNumber": <line number if available>
     }
   ],
   "analysis": "<comprehensive analysis>"
 }
 
-Be specific and actionable in your recommendations.`
+Be specific and actionable in your recommendations. Include line numbers where applicable.`
 
   try {
     const message = await (client as any).messages.create({
@@ -90,7 +107,10 @@ Be specific and actionable in your recommendations.`
     }
 
     const analysis = JSON.parse(jsonMatch[0]) as AIAnalysisResult
-    return analysis
+    
+    // Enrich issues with code snippets from parsed data
+    const enrichedAnalysis = enrichIssuesWithCodeSnippets(analysis, data)
+    return enrichedAnalysis
   } catch (error) {
     console.error('Claude analysis error:', error)
     console.log('Falling back to mock analysis')
@@ -106,25 +126,62 @@ function generateMockAnalysis(data: ParsedMemoryData, fileName: string): AIAnaly
     p.toLowerCase().includes('free')
   )
 
+  // Get code snippets for the issues
+  const allocationSnippets = data.codeSnippets.get('allocation') || []
+  const unmatchedSnippets = data.codeSnippets.get('unmatched_malloc') || data.codeSnippets.get('unmatched_new') || []
+
+  const issues = [
+    {
+      type: 'leak',
+      location: data.functions[0] || 'unknown',
+      severity: hasMemoryPatterns ? 'high' : 'medium',
+      description: `Potential memory leak detected in ${fileName}. Memory allocation without corresponding deallocation detected.`,
+      recommendation: 'Add corresponding free() or delete calls for all allocated memory.',
+      codeSnippet: unmatchedSnippets[0],
+      lineNumber: unmatchedSnippets[0]?.lineNumber,
+    },
+    {
+      type: 'leak',
+      location: data.functions[1] || 'unknown',
+      severity: 'medium',
+      description: `Possible unfreed memory found in function. Check for early returns or exceptions that skip cleanup.`,
+      recommendation: 'Use RAII patterns or ensure cleanup in all code paths.',
+      codeSnippet: allocationSnippets[0],
+      lineNumber: allocationSnippets[0]?.lineNumber,
+    },
+  ]
+
   return {
     leaksFound: hasMemoryPatterns ? 2 : 1,
     severity: hasMemoryPatterns ? 'high' : 'medium',
-    issues: [
-      {
-        type: 'leak',
-        location: data.functions[0] || 'unknown',
-        severity: hasMemoryPatterns ? 'high' : 'medium',
-        description: `Potential memory leak detected in ${fileName}. Memory allocation without corresponding deallocation detected.`,
-        recommendation: 'Add corresponding free() or delete calls for all allocated memory.',
-      },
-      {
-        type: 'leak',
-        location: data.functions[1] || 'unknown',
-        severity: 'medium',
-        description: `Possible unfreed memory found in function. Check for early returns or exceptions that skip cleanup.`,
-        recommendation: 'Use RAII patterns or ensure cleanup in all code paths.',
-      },
-    ],
+    issues,
     analysis: `Analysis of ${fileName} (${data.size} bytes) revealed potential memory management issues. The file contains ${data.functions.length} functions with suspicious memory patterns. Recommended actions: 1) Add memory leak detection tools, 2) Use static analysis, 3) Review malloc/free pairs.`,
   }
+}
+
+function formatCodeSnippets(codeSnippets: Map<string, any[]>): string {
+  let result = ''
+  codeSnippets.forEach((snippets, category) => {
+    result += `\n${category.replace(/_/g, ' ').toUpperCase()}:\n`
+    snippets.slice(0, 5).forEach(snippet => {
+      result += `  Line ${snippet.lineNumber}: ${snippet.code}\n`
+    })
+  })
+  return result
+}
+
+function enrichIssuesWithCodeSnippets(analysis: AIAnalysisResult, data: ParsedMemoryData): AIAnalysisResult {
+  const enrichedIssues = analysis.issues.map(issue => {
+    if (issue.lineNumber) {
+      // Find the corresponding code snippet
+      const codeSnippets = Array.from(data.codeSnippets.values()).flat()
+      const snippet = codeSnippets.find(s => s.lineNumber === issue.lineNumber)
+      if (snippet) {
+        return { ...issue, codeSnippet: snippet }
+      }
+    }
+    return issue
+  })
+
+  return { ...analysis, issues: enrichedIssues }
 }

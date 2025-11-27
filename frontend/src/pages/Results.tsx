@@ -8,6 +8,12 @@ interface Issue {
   severity: string
   description: string
   recommendation: string
+  codeSnippet?: {
+    lineNumber: number
+    code: string
+    context: string[]
+  }
+  lineNumber?: number
 }
 
 interface FileResult {
@@ -228,6 +234,27 @@ export default function Results() {
                             </div>
                             <p className="text-slate-400 text-sm mb-2">{issue.location}</p>
                             <p className="text-slate-300 mb-2">{issue.description}</p>
+                            
+                            {/* Code Snippet Display */}
+                            {issue.codeSnippet && (
+                              <div className="bg-slate-900 rounded p-3 mb-3 font-mono text-sm">
+                                <div className="text-slate-400 mb-2">
+                                  <span className="text-yellow-400">→ Line {issue.codeSnippet.lineNumber}</span>
+                                </div>
+                                <div className="bg-slate-950 rounded p-2 mb-2 border-l-2 border-red-500">
+                                  <div className="text-red-300">{issue.codeSnippet.code}</div>
+                                </div>
+                                {issue.codeSnippet.context && issue.codeSnippet.context.length > 0 && (
+                                  <div className="text-slate-500 text-xs mt-2 pt-2 border-t border-slate-700">
+                                    <div className="text-slate-400 mb-1">Context:</div>
+                                    {issue.codeSnippet.context.map((line, i) => (
+                                      <div key={i} className="text-slate-600">{line.trim() || '...'}</div>
+                                    ))}
+                                  </div>
+                                )}
+                              </div>
+                            )}
+                            
                             <div className="bg-slate-900 rounded p-2 text-sm text-slate-300">
                               <span className="font-semibold text-green-400">💡 Fix: </span>
                               {issue.recommendation}
@@ -266,6 +293,27 @@ export default function Results() {
                     </div>
                     <p className="text-slate-400 text-sm mb-2">{issue.location}</p>
                     <p className="text-slate-300 mb-2">{issue.description}</p>
+                    
+                    {/* Code Snippet Display */}
+                    {issue.codeSnippet && (
+                      <div className="bg-slate-900 rounded p-3 mb-3 font-mono text-sm">
+                        <div className="text-slate-400 mb-2">
+                          <span className="text-yellow-400">→ Line {issue.codeSnippet.lineNumber}</span>
+                        </div>
+                        <div className="bg-slate-950 rounded p-2 mb-2 border-l-2 border-red-500">
+                          <div className="text-red-300">{issue.codeSnippet.code}</div>
+                        </div>
+                        {issue.codeSnippet.context && issue.codeSnippet.context.length > 0 && (
+                          <div className="text-slate-500 text-xs mt-2 pt-2 border-t border-slate-700">
+                            <div className="text-slate-400 mb-1">Context:</div>
+                            {issue.codeSnippet.context.map((line, i) => (
+                              <div key={i} className="text-slate-600">{line.trim() || '...'}</div>
+                            ))}
+                          </div>
+                        )}
+                      </div>
+                    )}
+                    
                     <div className="bg-slate-800 rounded p-2 text-sm text-slate-300">
                       <span className="font-semibold text-green-400">💡 Fix: </span>
                       {issue.recommendation}

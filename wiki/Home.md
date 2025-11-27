@@ -50,17 +50,9 @@ The **Memory Leak Analyzer (MLA)** is an intelligent, AI-powered tool designed t
 
 ## 📸 Screenshots
 
-### Frontend Dashboard
-![Memory Leak Analyzer Dashboard](./images/frontend-dashboard.svg)
-*Main dashboard showing recent analyses and overview*
-
-### Analyzer Interface
-![Analyzer Upload Interface](./images/analyzer-interface.svg)
-*File upload and analysis configuration interface*
-
-### Results Visualization
-![Analysis Results](./images/analysis-results.svg)
-*AI-powered findings and detailed memory leak analysis*
+### Live Application
+![Memory Leak Analyzer](./images/application-screenshot.png)
+*Memory Leak Analyzer interface showing dashboard, analyzer, and results*
 
 ---
 
