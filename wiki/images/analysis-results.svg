@@ -1,0 +1,78 @@
+<svg width="1200" height="800" xmlns="http://www.w3.org/2000/svg">
+  <!-- Background -->
+  <rect width="1200" height="800" fill="#f0f5fa"/>
+  
+  <!-- Header -->
+  <rect width="1200" height="100" fill="#3b82f6"/>
+  <text x="600" y="60" font-size="48" font-weight="bold" text-anchor="middle" fill="white" font-family="Arial">
+    Analysis Results & Findings
+  </text>
+  
+  <!-- Main content -->
+  <rect x="50" y="130" width="1100" height="650" fill="#ffffff" stroke="#e0e7ff" stroke-width="2" rx="8"/>
+  
+  <!-- Summary -->
+  <g>
+    <rect x="70" y="150" width="1060" height="80" fill="#eff6ff" stroke="#bfdbfe" stroke-width="1" rx="4"/>
+    <text x="90" y="175" font-size="18" font-weight="bold" fill="#1f2937" font-family="Arial">Analysis Summary</text>
+    <text x="90" y="205" font-size="13" fill="#6b7280" font-family="Arial">File: application.bin | Time: 2m 34s | Status: ✓ Completed</text>
+  </g>
+  
+  <!-- Findings section -->
+  <text x="90" y="270" font-size="20" font-weight="bold" fill="#1f2937" font-family="Arial">
+    Memory Leak Findings
+  </text>
+  
+  <!-- Critical finding -->
+  <g>
+    <rect x="70" y="290" width="1060" height="100" fill="#fef2f2" stroke="#fecaca" stroke-width="1" rx="4"/>
+    <circle cx="90" cy="310" r="8" fill="#dc2626"/>
+    <text x="110" y="315" font-size="14" font-weight="bold" fill="#991b1b" font-family="Arial">CRITICAL: Memory Leak in malloc() allocation</text>
+    <text x="110" y="335" font-size="12" fill="#7f1d1d" font-family="Arial">📍 Line 427 in src/memory_handler.c - 2.3 MB leaked</text>
+    <text x="110" y="360" font-size="12" fill="#7f1d1d" font-family="Arial">💡 Recommendation: Add corresponding free() call after line 450. Missing cleanup in error handling path.</text>
+  </g>
+  
+  <!-- High severity finding -->
+  <g>
+    <rect x="70" y="410" width="1060" height="85" fill="#fff7ed" stroke="#fed7aa" stroke-width="1" rx="4"/>
+    <circle cx="90" cy="430" r="8" fill="#f59e0b"/>
+    <text x="110" y="435" font-size="14" font-weight="bold" fill="#b45309" font-family="Arial">HIGH: Buffer overflow vulnerability detected</text>
+    <text x="110" y="455" font-size="12" fill="#92400e" font-family="Arial">📍 Line 156 in src/parser.c - strcpy() without bounds checking</text>
+    <text x="110" y="475" font-size="12" fill="#92400e" font-family="Arial">💡 Recommendation: Use strncpy() or safer alternatives for string operations.</text>
+  </g>
+  
+  <!-- Medium severity finding -->
+  <g>
+    <rect x="70" y="515" width="1060" height="85" fill="#f0fdf4" stroke="#86efac" stroke-width="1" rx="4"/>
+    <circle cx="90" cy="535" r="8" fill="#10b981"/>
+    <text x="110" y="540" font-size="14" font-weight="bold" fill="#065f46" font-family="Arial">MEDIUM: Potential memory leak in exception path</text>
+    <text x="110" y="560" font-size="12" fill="#166534" font-family="Arial">📍 Line 89 in src/init.c - Resource not freed on throw</text>
+    <text x="110" y="580" font-size="12" fill="#166534" font-family="Arial">💡 Recommendation: Use RAII pattern or ensure cleanup handlers are registered.</text>
+  </g>
+  
+  <!-- Action buttons -->
+  <rect x="70" y="620" width="250" height="45" fill="#3b82f6" rx="6"/>
+  <text x="195" y="650" font-size="14" font-weight="bold" text-anchor="middle" fill="white" font-family="Arial">
+    📥 Download Report
+  </text>
+  
+  <rect x="340" y="620" width="250" height="45" fill="#10b981" rx="6"/>
+  <text x="465" y="650" font-size="14" font-weight="bold" text-anchor="middle" fill="white" font-family="Arial">
+    📊 View Detailed Metrics
+  </text>
+  
+  <rect x="610" y="620" width="250" height="45" fill="#8b5cf6" rx="6"/>
+  <text x="735" y="650" font-size="14" font-weight="bold" text-anchor="middle" fill="white" font-family="Arial">
+    🔄 New Analysis
+  </text>
+  
+  <rect x="880" y="620" width="250" height="45" fill="#6b7280" rx="6"/>
+  <text x="1005" y="650" font-size="14" font-weight="bold" text-anchor="middle" fill="white" font-family="Arial">
+    💾 Save Results
+  </text>
+  
+  <!-- Label -->
+  <text x="600" y="770" font-size="16" text-anchor="middle" fill="#3b82f6" font-family="Arial">
+    [Analysis Results Preview]
+  </text>
+</svg>

@@ -1,0 +1,78 @@
+<svg width="1200" height="800" xmlns="http://www.w3.org/2000/svg">
+  <!-- Background -->
+  <rect width="1200" height="800" fill="#f0f5fa"/>
+  
+  <!-- Header -->
+  <rect width="1200" height="100" fill="#3b82f6"/>
+  <text x="600" y="60" font-size="48" font-weight="bold" text-anchor="middle" fill="white" font-family="Arial">
+    File Analyzer & Configuration
+  </text>
+  
+  <!-- Main content -->
+  <rect x="100" y="130" width="1000" height="650" fill="#ffffff" stroke="#e0e7ff" stroke-width="2" rx="8"/>
+  
+  <!-- Upload section -->
+  <text x="120" y="170" font-size="24" font-weight="bold" fill="#1f2937" font-family="Arial">
+    Upload File for Analysis
+  </text>
+  
+  <!-- Upload area -->
+  <rect x="120" y="190" width="960" height="180" fill="#f9fafb" stroke="#cbd5e1" stroke-width="2" stroke-dasharray="5,5" rx="8"/>
+  <text x="600" y="270" font-size="18" text-anchor="middle" fill="#6b7280" font-family="Arial">
+    📁 Drag and drop your file here
+  </text>
+  <text x="600" y="300" font-size="14" text-anchor="middle" fill="#9ca3af" font-family="Arial">
+    or click to select
+  </text>
+  <text x="600" y="330" font-size="12" text-anchor="middle" fill="#9ca3af" font-family="Arial">
+    Supported formats: Binary (.bin, .elf), Source (.c, .cpp, .h), Debug symbols
+  </text>
+  
+  <!-- Configuration section -->
+  <text x="120" y="410" font-size="20" font-weight="bold" fill="#1f2937" font-family="Arial">
+    Analysis Configuration
+  </text>
+  
+  <!-- Config options -->
+  <g>
+    <!-- Option 1 -->
+    <rect x="120" y="430" width="450" height="60" fill="#f9fafb" stroke="#e5e7eb" stroke-width="1" rx="4"/>
+    <circle cx="145" cy="460" r="8" fill="#3b82f6"/>
+    <text x="170" y="445" font-size="14" font-weight="bold" fill="#1f2937" font-family="Arial">Deep Memory Analysis</text>
+    <text x="170" y="470" font-size="12" fill="#6b7280" font-family="Arial">Enable comprehensive memory leak detection</text>
+    
+    <!-- Option 2 -->
+    <rect x="630" y="430" width="450" height="60" fill="#f9fafb" stroke="#e5e7eb" stroke-width="1" rx="4"/>
+    <circle cx="655" cy="460" r="8" fill="#10b981"/>
+    <text x="680" y="445" font-size="14" font-weight="bold" fill="#1f2937" font-family="Arial">Fast Scan Mode</text>
+    <text x="680" y="470" font-size="12" fill="#6b7280" font-family="Arial">Quick analysis for immediate results</text>
+    
+    <!-- Option 3 -->
+    <rect x="120" y="510" width="450" height="60" fill="#f9fafb" stroke="#e5e7eb" stroke-width="1" rx="4"/>
+    <circle cx="145" cy="540" r="8" fill="#9ca3af"/>
+    <text x="170" y="525" font-size="14" font-weight="bold" fill="#1f2937" font-family="Arial">Generate Report</text>
+    <text x="170" y="550" font-size="12" fill="#6b7280" font-family="Arial">Create detailed PDF report of findings</text>
+    
+    <!-- Option 4 -->
+    <rect x="630" y="510" width="450" height="60" fill="#f9fafb" stroke="#e5e7eb" stroke-width="1" rx="4"/>
+    <circle cx="655" cy="540" r="8" fill="#9ca3af"/>
+    <text x="680" y="525" font-size="14" font-weight="bold" fill="#1f2937" font-family="Arial">AI-Powered Recommendations</text>
+    <text x="680" y="550" font-size="12" fill="#6b7280" font-family="Arial">Get Claude AI suggestions for fixes</text>
+  </g>
+  
+  <!-- Action buttons -->
+  <rect x="120" y="600" width="450" height="50" fill="#3b82f6" rx="6"/>
+  <text x="345" y="635" font-size="16" font-weight="bold" text-anchor="middle" fill="white" font-family="Arial">
+    Start Analysis
+  </text>
+  
+  <rect x="630" y="600" width="450" height="50" fill="#6b7280" rx="6"/>
+  <text x="855" y="635" font-size="16" font-weight="bold" text-anchor="middle" fill="white" font-family="Arial">
+    Cancel
+  </text>
+  
+  <!-- Label -->
+  <text x="600" y="770" font-size="16" text-anchor="middle" fill="#3b82f6" font-family="Arial">
+    [Analyzer Interface Preview]
+  </text>
+</svg>
