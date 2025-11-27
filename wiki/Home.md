@@ -6,6 +6,7 @@ Welcome to the **Memory Leak Analyzer** wiki! This is your comprehensive guide t
 
 - [About MLA](#about-mla)
 - [Key Features](#key-features)
+- [Screenshots](#screenshots)
 - [Getting Started](#getting-started)
 - [Architecture](#architecture)
 - [API Documentation](#api-documentation)
@@ -44,6 +45,22 @@ The **Memory Leak Analyzer (MLA)** is an intelligent, AI-powered tool designed t
 - **Well Documented**: Comprehensive documentation and code comments
 - **Easy to Extend**: Modular architecture for adding new features
 - **Docker Support**: Out-of-the-box containerization
+
+---
+
+## 📸 Screenshots
+
+### Frontend Dashboard
+![Memory Leak Analyzer Dashboard](./images/frontend-dashboard.png)
+*Main dashboard showing recent analyses and overview*
+
+### Analyzer Interface
+![Analyzer Upload Interface](./images/analyzer-interface.png)
+*File upload and analysis configuration interface*
+
+### Results Visualization
+![Analysis Results](./images/analysis-results.png)
+*AI-powered findings and detailed memory leak analysis*
 
 ---
 
