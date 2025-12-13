@@ -59,6 +59,22 @@ This will start:
 - Frontend: http://localhost:3000
 - Backend API: http://localhost:4000
 
+### Docker Compose
+
+You can also run the application using Docker Compose:
+
+```bash
+# Build and start services
+docker-compose up -d --build
+
+# View logs
+docker-compose logs -f
+```
+
+Accessible at:
+- Frontend: http://localhost:3000
+- Backend: http://localhost:4000
+
 ### Building
 
 ```bash
