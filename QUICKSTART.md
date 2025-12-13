@@ -2,18 +2,12 @@
 
 ## ⚡ 5-Minute Setup
 
-### 1. Get Claude API Key
-1. Visit https://console.anthropic.com
-2. Sign up or login
-3. Create API key
-4. Copy the key (starts with `sk-ant-`)
-
-### 2. Configure Project
+### 1. Configure Project
 ```bash
 # Create environment file
-echo "CLAUDE_API_KEY=sk-ant-your-key-here" > backend/.env
-echo "PORT=4000" >> backend/.env
+echo "PORT=4000" > backend/.env
 echo "NODE_ENV=development" >> backend/.env
+echo "OLLAMA_MODEL=gemma3:1b" >> backend/.env
 ```
 
 ### 3. Start Development
@@ -128,7 +122,7 @@ curl http://localhost:4000/api/health
 ## 🎓 Project Features
 
 ✅ **Drag & Drop Upload** - Easy file selection
-✅ **AI Analysis** - Claude AI powers detection
+✅ **AI Analysis** - Ollama (Gemma 3) powers detection
 ✅ **Live Results** - Real-time feedback
 ✅ **Smart Recommendations** - AI-provided fixes
 ✅ **Multi-Format** - Support for binaries & source
@@ -149,7 +143,7 @@ curl http://localhost:4000/api/health
    - Test the analyzer with various file types
 
 2. **Customize Analysis**
-   - Edit `backend/src/services/claudeService.ts`
+   - Edit `backend/src/services/ollamaService.ts`
    - Modify analysis prompts
    - Add custom detection patterns
 

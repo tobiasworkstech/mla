@@ -29,7 +29,7 @@ Location: `/backend`
 
 **Components:**
 - ✅ Express REST API server
-- ✅ Claude AI integration service
+- ✅ Ollama AI integration service
 - ✅ Memory dump parsing service
 - ✅ File upload handling
 - ✅ Results storage and retrieval
@@ -97,7 +97,7 @@ Location: `/cpp-analyzer`
 ✅ tsconfig.json
 ✅ .env.example
 ✅ src/index.ts
-✅ src/services/claudeService.ts
+✅ src/services/ollamaService.ts
 ✅ src/services/memoryParser.ts
 ✅ README.md
 ```
@@ -123,8 +123,8 @@ Location: `/cpp-analyzer`
 
 ### Quick Start (3 steps)
 ```bash
-# 1. Add your Claude API key
-echo "CLAUDE_API_KEY=sk-ant-..." > backend/.env
+# 1. Configure Ollama (optional)
+echo "OLLAMA_MODEL=gemma3:1b" > backend/.env
 
 # 2. Start servers
 npm run dev
@@ -146,7 +146,7 @@ All components verified ✓
 | Layer | Technology |
 |-------|------------|
 | Frontend | React 18, TypeScript 5, Vite, Tailwind CSS |
-| Backend | Node.js 18, Express, Multer, Anthropic SDK |
+| Backend | Node.js 18, Express, Multer |
 | Native | C++17, CMake 3.15+ |
 | DevOps | Docker, Docker Compose |
 | Tools | ESLint, Prettier, TypeScript |
@@ -160,7 +160,7 @@ All components verified ✓
 - Progress indication
 
 ✅ **AI Analysis**
-- Claude API integration
+- Ollama API integration
 - Pattern recognition
 - Issue detection
 - Severity assessment
@@ -181,7 +181,7 @@ All components verified ✓
 ## 💡 Next Steps
 
 ### Immediate
-1. Add Claude API key to `backend/.env`
+1. Ensure Ollama is running
 2. Run `npm run dev`
 3. Test with sample files
 
@@ -255,7 +255,7 @@ This project demonstrates:
 - Express.js API design
 - C++ native modules
 - Docker containerization
-- Claude AI API integration
+- Ollama AI API integration
 - Modern build tools (Vite)
 - Monorepo architecture
 
@@ -296,7 +296,7 @@ bash verify.sh          # Verify project
 
 Your Memory Leak Analyzer is ready to go!
 
-**Next Action**: Add Claude API key and run `npm run dev`
+**Next Action**: Ensure Ollama is running and run `npm run dev`
 
 ---
 

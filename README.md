@@ -1,11 +1,11 @@
-# Memory Leak Analyzer ( not ready yet, looking for a local model to run)
+# Memory Leak Analyzer
 
-An intelligent memory leak detection and analysis tool powered by Claude AI. Analyze C/C++ binaries and source code for memory leaks, corruption, and other issues.
+An intelligent memory leak detection and analysis tool powered by **Ollama (Gemma 3)**. Analyze C/C++ binaries and source code for memory leaks, corruption, and other issues.
 
 ## Features
 
 - **Local File Analysis**: Load and analyze C/C++ binaries and source files locally
-- **AI-Powered Analysis**: Claude AI integration for intelligent leak detection and recommendations
+- **AI-Powered Analysis**: Local AI integration (Gemma 3) for intelligent leak detection and recommendations
 - **Real-time Visualization**: Interactive dashboard for memory issue visualization
 - **Comprehensive Reports**: Detailed analysis reports with actionable insights
 - **Multi-format Support**: Support for binaries, source code, and debug symbols
@@ -28,7 +28,7 @@ memoryLeakAnalyzer/
 - Python 3.8+
 - CMake 3.15+
 - Xcode Command Line Tools (macOS)
-- Claude API Key
+- Ollama (running gemma3:1b)
 
 ### Installation
 
@@ -40,7 +40,7 @@ npm install
 2. Set up environment variables:
 ```bash
 cp backend/.env.example backend/.env
-# Add your Claude API key to backend/.env
+# Configure Ollama in backend/.env if needed
 ```
 
 3. Build the C/C++ analyzer:

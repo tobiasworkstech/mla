@@ -153,7 +153,7 @@ function findCppFiles(dirPath: string, extensions = ['.c', '.cpp', '.cc', '.cxx'
 2. Find all C/C++ files recursively
 3. Read each file from disk
 4. Parse with memory parser
-5. Analyze with Claude AI
+5. Analyze with Ollama AI
 6. Return combined results
 
 ---

@@ -2,7 +2,7 @@
 
 ## 🎯 Project Overview
 
-A full-stack AI-powered memory leak analyzer that uses Claude AI to detect and analyze memory issues in C/C++ code. This is a production-ready application with modern frontend, backend, and native analysis capabilities.
+A full-stack AI-powered memory leak analyzer that uses **Ollama** (Gemma 3) to detect and analyze memory issues in C/C++ code. This is a production-ready application with modern frontend, backend, and native analysis capabilities.
 
 ## ✨ What's Included
 
@@ -20,9 +20,9 @@ A full-stack AI-powered memory leak analyzer that uses Claude AI to detect and a
 - `src/pages/Results.tsx` - Results and findings display
 - `src/components/Layout.tsx` - Navigation and layout
 
-### Backend (Node.js + Express + Claude AI)
+### Backend (Node.js + Express + Ollama AI)
 - 🚀 RESTful API with Express
-- 🤖 Claude AI integration for intelligent analysis
+- 🤖 Ollama AI integration for intelligent analysis
 - 📦 File handling and processing
 - 🔍 Memory dump parsing and analysis
 - 💾 In-memory result storage (extensible to database)
@@ -30,7 +30,7 @@ A full-stack AI-powered memory leak analyzer that uses Claude AI to detect and a
 **Location**: `backend/`
 **Key Files**:
 - `src/index.ts` - Main API server
-- `src/services/claudeService.ts` - AI analysis orchestration
+- `src/services/ollamaService.ts` - AI analysis orchestration
 - `src/services/memoryParser.ts` - Memory dump parsing
 
 ### C/C++ Analyzer (CMake + C++17)
@@ -94,7 +94,7 @@ memoryLeakAnalyzer/
 
 ### Prerequisites
 - Node.js 18+
-- Claude API key (from console.anthropic.com)
+- Ollama running locally (with `gemma3:1b` model)
 - macOS/Linux with build tools
 
 ### Setup
@@ -102,8 +102,8 @@ memoryLeakAnalyzer/
 # 1. Run setup script
 bash setup.sh
 
-# 2. Add API key
-echo "CLAUDE_API_KEY=sk-ant-..." >> backend/.env
+# 2. Configure Ollama (optional)
+echo "OLLAMA_MODEL=gemma3:1b" >> backend/.env
 
 # 3. Start servers
 npm run dev
@@ -147,7 +147,7 @@ npm run lint
 
 ### Current
 ✅ File upload (drag & drop)
-✅ Claude AI integration
+✅ Ollama AI integration
 ✅ Memory leak detection patterns
 ✅ Results visualization
 ✅ Severity assessment
@@ -175,7 +175,7 @@ docker run -p 3000:3000 -p 4000:4000 \
 
 ### Docker Compose
 ```bash
-CLAUDE_API_KEY=sk-ant-... docker-compose up
+docker-compose up
 ```
 
 ### Cloud Platforms
@@ -198,7 +198,7 @@ CLAUDE_API_KEY=sk-ant-... docker-compose up
 - Node.js 18+
 - Express 4
 - TypeScript 5
-- Claude AI API
+- Ollama API
 - Multer (file upload)
 
 **C/C++**

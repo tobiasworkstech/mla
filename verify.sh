@@ -33,7 +33,7 @@ done
 echo ""
 echo "🔧 Checking Backend:"
 for file in backend/package.json backend/tsconfig.json backend/.env.example \
-            backend/src/index.ts backend/src/services/claudeService.ts; do
+            backend/src/index.ts backend/src/services/ollamaService.ts; do
     if [ -f "$file" ]; then
         echo "$PASS $file"
         ((COUNT++))
@@ -82,6 +82,6 @@ fi
 
 echo ""
 echo "🚀 Next Steps:"
-echo "1. Add Claude API key to backend/.env"
+echo "1. Verify Ollama is running"
 echo "2. Run: npm run dev"
 echo "3. Open http://localhost:3000"

@@ -1,5 +1,15 @@
 # Changelog
 
+## [1.1.0] - 2025-12-13
+
+### Changed
+- **AI Provider**: Migrated from Anthropic Claude to **Ollama (Gemma 3)** for local analysis.
+- **Cleanup**: Removed unused Claude services and dependencies.
+
+### Added
+- **Ollama Integration**: New `ollamaService.ts` to handle local model inference.
+- **Environment Config**: Added `OLLAMA_MODEL` and `OLLAMA_HOST` configuration support.
+
 ## [1.0.0] - 2024-11-26
 
 ### Added

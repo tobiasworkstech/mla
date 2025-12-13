@@ -24,7 +24,7 @@
 ### Dependencies
 - **Total Packages**: 258+ installed
 - **Frontend**: React 18, Vite, TypeScript, Tailwind CSS
-- **Backend**: Express, Multer, Anthropic SDK, Dotenv
+- **Backend**: Express, Multer, Dotenv
 - **Type Definitions**: @types/cors, @types/multer, @types/express-serve-static-core
 
 ## Test Results
@@ -49,10 +49,10 @@
 
 ## Next Steps
 
-1. **Configure Claude API Key**
+1. **Configure Ollama**
    ```bash
-   # Add real API key to backend/.env
-   CLAUDE_API_KEY=sk-ant-your-key-here
+   # Add configuration to backend/.env (optional)
+   OLLAMA_MODEL=gemma3:1b
    ```
 
 2. **Run Development Servers**
@@ -85,7 +85,7 @@
 1. ✅ Fixed TypeScript imports (React 18+ JSX syntax)
 2. ✅ Added missing type definitions for CORS and Multer
 3. ✅ Fixed postcss.config -> postcss.config.cjs
-4. ✅ Resolved Anthropic SDK type issues
+4. ✅ Resolved Ollama integration issues
 5. ✅ Fixed all compilation errors
 
 ## Ready for Production ✅

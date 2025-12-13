@@ -17,11 +17,11 @@ Welcome to the **Memory Leak Analyzer** wiki! This is your comprehensive guide t
 
 ## 🎯 About MLA
 
-The **Memory Leak Analyzer (MLA)** is an intelligent, AI-powered tool designed to detect and analyze memory leaks and corruption in C/C++ code. By leveraging Claude AI, MLA provides comprehensive analysis with actionable insights and recommendations.
+The **Memory Leak Analyzer (MLA)** is an intelligent, AI-powered tool designed to detect and analyze memory leaks and corruption in C/C++ code. By leveraging **Local AI (Ollama + Gemma 3)**, MLA provides comprehensive analysis with actionable insights and recommendations.
 
 ### What Makes MLA Special?
 
-✨ **AI-Powered Analysis** - Claude AI integration for intelligent leak detection
+✨ **AI-Powered Analysis** - Local AI integration for intelligent leak detection
 🔍 **Comprehensive Detection** - Identifies memory leaks, corruption, and related issues
 📊 **Real-time Visualization** - Interactive dashboard for memory issue visualization
 📤 **Easy File Upload** - Drag-and-drop interface for binary and source files
@@ -34,7 +34,7 @@ The **Memory Leak Analyzer (MLA)** is an intelligent, AI-powered tool designed t
 
 ### For Users
 - **Local File Analysis**: Load and analyze C/C++ binaries and source files locally
-- **AI-Powered Insights**: Claude AI provides intelligent analysis and recommendations
+- **AI-Powered Insights**: Local AI provides intelligent analysis and recommendations
 - **Real-time Status**: Watch analysis progress in real-time
 - **Comprehensive Reports**: Detailed findings with severity levels and actionable fixes
 - **Multi-format Support**: Support for binaries, source code, and debug symbols
@@ -65,8 +65,8 @@ The **Memory Leak Analyzer (MLA)** is an intelligent, AI-powered tool designed t
 git clone https://github.com/tobiasworkstech/mla.git
 cd mla
 
-# Set your Claude API key
-export CLAUDE_API_KEY=sk-ant-...
+# Set up Ollama (ensure it's running locally)
+# Default is gemma3:1b
 
 # Start with Docker Compose
 docker-compose up
@@ -81,7 +81,7 @@ Then open:
 1. **Prerequisites**: Node.js 18+, Python 3.8+, CMake 3.15+
 2. **Install dependencies**: `npm install`
 3. **Configure environment**: `cp backend/.env.example backend/.env`
-4. **Add your Claude API key** to `backend/.env`
+4. **Configure Ollama** in `backend/.env` (optional)
 5. **Start development servers**: `npm run dev`
 
 ### First Analysis
@@ -113,7 +113,7 @@ Then open:
     ┌────┴────┐
     ↓         ↓
 ┌──────────┐ ┌──────────┐
-│ Claude   │ │ Memory   │
+│ Ollama   │ │ Memory   │
 │ AI API   │ │ Parser   │
 └──────────┘ └──────────┘
 ```
@@ -133,7 +133,7 @@ Then open:
 - **Responsibilities**:
   - API endpoint management
   - File upload handling
-  - Claude AI integration
+  - Ollama AI integration
   - Memory dump parsing
   - Results storage and retrieval
 
@@ -223,15 +223,8 @@ docker build -t memory-leak-analyzer .
 
 **Step 2: Run the container**
 ```bash
-docker run -p 3000:3000 -p 4000:4000 \
-  -e CLAUDE_API_KEY=sk-ant-... \
-  memory-leak-analyzer
-```
-
-### Docker Compose Deployment
-
-```bash
-CLAUDE_API_KEY=sk-ant-... docker-compose up -d
+# Docker Compose
+docker-compose up -d
 ```
 
 ### Production Deployment Options
@@ -310,9 +303,7 @@ memoryLeakAnalyzer/
 lsof -i :4000 | grep LISTEN | awk '{print $2}' | xargs kill -9
 ```
 
-**Issue**: Missing Claude API key
-```bash
-# Ensure backend/.env has valid CLAUDE_API_KEY
+# Ensure backend/.env has valid configuration
 cat backend/.env
 ```
 
@@ -420,7 +411,7 @@ MIT License - See [LICENSE](../LICENSE) file for details
 
 - [ ] Clone the repository
 - [ ] Install Node.js 18+
-- [ ] Get Claude API key from https://console.anthropic.com
+- [ ] Install Ollama and pull gemma3:1b
 - [ ] Run `bash setup.sh` or `npm install`
 - [ ] Add API key to `backend/.env`
 - [ ] Start with `npm run dev` or `docker-compose up`
