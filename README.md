@@ -1,4 +1,4 @@
-# Memory Leak Analyzer
+# Memory Leak Analyzer (MLA by AI)
 
 An intelligent memory leak detection and analysis tool powered by **Ollama (Gemma 3)**. Analyze C/C++ binaries and source code for memory leaks, corruption, and other issues.
 
