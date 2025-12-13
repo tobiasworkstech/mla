@@ -6,7 +6,7 @@ interface LayoutProps {
 
 export default function Layout({ children }: LayoutProps) {
   return (
-    <div className="min-h-screen bg-slate-950">
+    <div className="min-h-screen bg-slate-950 flex flex-col">
       <nav className="bg-slate-900 border-b border-slate-700 sticky top-0 z-50">
         <div className="max-w-7xl mx-auto px-4 py-4 flex items-center justify-between">
           <Link to="/" className="flex items-center gap-2">
@@ -25,9 +25,16 @@ export default function Layout({ children }: LayoutProps) {
           </div>
         </div>
       </nav>
-      <main className="max-w-7xl mx-auto px-4 py-8">
+      <main className="max-w-7xl mx-auto px-4 py-8 flex-grow w-full">
         {children}
       </main>
+      <footer className="bg-slate-900 border-t border-slate-800 py-6">
+        <div className="max-w-7xl mx-auto px-4 text-center text-slate-400">
+          <p>
+            Powered by <a href="https://github.com/tobiasworkstech" target="_blank" rel="noopener noreferrer" className="text-blue-400 hover:text-blue-300 transition">TobiasWorksTech</a>
+          </p>
+        </div>
+      </footer>
     </div>
   )
 }
