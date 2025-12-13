@@ -1,4 +1,4 @@
-# Memory Leak Analyzer
+# Memory Leak Analyzer ( not ready yet, looking for a local model to run)
 
 An intelligent memory leak detection and analysis tool powered by Claude AI. Analyze C/C++ binaries and source code for memory leaks, corruption, and other issues.
 
