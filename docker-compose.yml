@@ -10,7 +10,7 @@ services:
     environment:
       - NODE_ENV=production
       - PORT=4000
-      - CLAUDE_API_KEY=${CLAUDE_API_KEY:-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}
+      - PORT=4000
     volumes:
       - ./backend/.env:/app/backend/.env:ro
       - /Users:/Users:ro
@@ -19,6 +19,8 @@ services:
     restart: unless-stopped
     networks:
       - analyzer-network
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
 
   frontend:
     image: node:18-alpine

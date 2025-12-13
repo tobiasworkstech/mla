@@ -5,7 +5,7 @@ import multer, { Multer } from 'multer'
 import { v4 as uuidv4 } from 'uuid'
 import * as fs from 'fs'
 import * as path from 'path'
-import { analyzeWithClaude } from './services/claudeService.js'
+import { analyzeWithOllama } from './services/ollamaService.js'
 import { parseMemoryDump } from './services/memoryParser.js'
 
 dotenv.config()
@@ -79,7 +79,7 @@ app.post('/api/analyze', upload.array('files'), async (req: Request, res: Respon
     for (const file of files) {
       try {
         const parsedData = await parseMemoryDump(file.buffer)
-        const aiAnalysis = await analyzeWithClaude(parsedData, file.originalname)
+        const aiAnalysis = await analyzeWithOllama(parsedData, file.originalname)
 
         analysisResults_batch.push({
           fileName: file.originalname,
@@ -146,7 +146,7 @@ app.post('/api/analyze-directory', express.json(), async (req: Request, res: Res
         const buffer = fs.readFileSync(filePath)
         const parsedData = await parseMemoryDump(buffer)
         const relPath = path.relative(directoryPath, filePath)
-        const aiAnalysis = await analyzeWithClaude(parsedData, relPath)
+        const aiAnalysis = await analyzeWithOllama(parsedData, relPath)
 
         analysisResults_batch.push({
           fileName: relPath,

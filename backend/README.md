@@ -16,10 +16,11 @@ Create a `.env` file based on `.env.example`:
 cp .env.example .env
 ```
 
-Add your Claude API key:
+The default configuration uses **Ollama** with `gemma3:1b`. You can customize this in `.env`:
 
 ```
-CLAUDE_API_KEY=sk-ant-...
+OLLAMA_MODEL=gemma3:1b
+OLLAMA_HOST=http://host.docker.internal:11434
 ```
 
 ## Development
@@ -46,5 +47,6 @@ npm run build
 ## Structure
 
 - `src/index.ts` - Main Express server
-- `src/services/claudeService.ts` - Claude AI integration
+- `src/index.ts` - Main Express server
+- `src/services/ollamaService.ts` - Ollama AI integration
 - `src/services/memoryParser.ts` - Memory dump parsing

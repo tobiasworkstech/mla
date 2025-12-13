@@ -36,10 +36,11 @@ npm install
 cp backend/.env.example backend/.env
 ```
 
-3. **Add Claude API Key**
-Edit `backend/.env`:
+3. **Configure Ollama (Optional)**
+Edit `backend/.env` if you need to change the model or host:
 ```
-CLAUDE_API_KEY=sk-ant-your-key-here
+OLLAMA_MODEL=gemma3:1b
+OLLAMA_HOST=http://host.docker.internal:11434
 PORT=4000
 NODE_ENV=development
 ```
@@ -70,7 +71,7 @@ npm run dev
 ### Backend
 - **Runtime**: Node.js 18+
 - **Framework**: Express
-- **AI Integration**: Anthropic Claude API
+- **AI Integration**: Local Ollama (Gemma 3)
 - **Features**:
   - File processing
   - Memory dump analysis
@@ -94,8 +95,9 @@ npm run dev
 PORT=4000
 NODE_ENV=development
 
-# Claude AI
-CLAUDE_API_KEY=sk-ant-...
+# Ollama AI
+OLLAMA_MODEL=gemma3:1b
+OLLAMA_HOST=http://host.docker.internal:11434
 
 # Optional
 UPLOAD_DIR=./uploads
@@ -181,8 +183,9 @@ This creates:
 Create `.env.production`:
 ```env
 PORT=4000
+PORT=4000
 NODE_ENV=production
-CLAUDE_API_KEY=sk-ant-...
+OLLAMA_MODEL=gemma3:1b
 ```
 
 ### Start Production Server
@@ -205,14 +208,14 @@ docker build -t memory-leak-analyzer .
 **Run Container**
 ```bash
 docker run -p 3000:3000 -p 4000:4000 \
-  -e CLAUDE_API_KEY=sk-ant-... \
+  -e OLLAMA_HOST=http://host.docker.internal:11434 \
   memory-leak-analyzer
 ```
 
 ### Docker Compose
 
 ```bash
-CLAUDE_API_KEY=sk-ant-... docker-compose up -d
+docker-compose up -d
 ```
 
 ### Cloud Deployment Options
@@ -250,7 +253,7 @@ npm install
 ### Backend Won't Start
 
 1. Check Node.js version: `node -v` (needs 18+)
-2. Verify Claude API key in `.env`
+2. Verify Ollama is running and accessible
 3. Check port 4000 isn't in use: `lsof -i :4000`
 4. Check logs: `npm run dev:backend`
 
@@ -283,12 +286,12 @@ On macOS, ensure Xcode tools:
 xcode-select --install
 ```
 
-### Claude API Errors
+### Ollama Connection Errors
 
-1. Verify API key is correct
-2. Check API quota at https://console.anthropic.com
-3. Ensure network access to api.anthropic.com
-4. Check rate limits
+1. Verify Ollama is running locally
+2. Check if the model is pulled: `ollama list`
+3. Verify `OLLAMA_HOST` is reachable from the container/backend
+4. Try `curl http://localhost:11434/api/tags`
 
 ## Performance Optimization
 
@@ -323,7 +326,7 @@ xcode-select --install
 ## Next Steps
 
 1. **Customize Analysis**
-   - Edit `backend/src/services/claudeService.ts`
+   - Edit `backend/src/services/ollamaService.ts`
    - Add more detection patterns
 
 2. **Improve UI**

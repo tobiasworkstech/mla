@@ -41,9 +41,7 @@ echo "🔑 Setting up environment..."
 if [ ! -f backend/.env ]; then
     cp backend/.env.example backend/.env
     echo "✓ Created backend/.env"
-    echo ""
-    echo "⚠️  Please add your Claude API key to backend/.env:"
-    echo "   CLAUDE_API_KEY=sk-ant-..."
+    echo "✓ Created backend/.env"
 else
     echo "✓ backend/.env already exists"
 fi
@@ -52,6 +50,5 @@ echo ""
 echo "✅ Setup complete!"
 echo ""
 echo "Next steps:"
-echo "1. Add your Claude API key to backend/.env"
-echo "2. Run: npm run dev"
-echo "3. Open http://localhost:3000 in your browser"
+echo "1. Run: npm run dev"
+echo "2. Open http://localhost:3000 in your browser"
